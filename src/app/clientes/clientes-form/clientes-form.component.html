@@ -1,1 +1,60 @@
-<h1>Formulário de clientes</h1>
+<h1 class="mt-4">Clientes</h1>
+<ol class="breadcrumb mb-4">
+  <li class="breadcrumb-item active">Cadastro</li>
+</ol>
+<div class="container">
+  <form>
+    <!-- Interpolação (Fluxo unirecional de dados do componente para o HTML)-->
+    {{dataBinding}}, Operações Algebricas, {{ 1 + 2 - 3 * 9}}
+    <br>
+    [value]="propertyBind" (==) bind-value = "propertyBind" - Unidirecional da HTML -> COMPONENTES
+    <br>
+    EventBinding -> (click) = "click()" - Evento unidirecional da HTML -> COMPONENTES
+    <br>
+    Two-way-data-binding = Bidirecional [(ngModel)] = "value"
+    <div class="row">
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>ID:</label>
+          <input type="text" class="form-control" disabled="true" />
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Data Cadastro:</label>
+          <input type="text" class="form-control" disabled="true" />
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Nome: *</label>
+          <input type="text" class="form-control" />
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>CPF: *</label>
+          <input type="text" class="form-control" />
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-md-2">
+        <button type="submit" class="btn btn-success">
+          <i class="fa fa-save"></i> Salvar
+        </button>
+      </div>
+    </div>
+
+  </form>
+</div>
