@@ -12,12 +12,19 @@ export class ClientesFormComponent implements OnInit {
 
   propertyBind: string;
 
+  cliente: Cliente;
+
   constructor() {
     this.dataBinding = 'dataBinding';
     this.propertyBind = 'propertyBind';
+    this.cliente = new Cliente();
   }
 
   ngOnInit(): void {
+  }
+
+  onSubmit(): void {
+
   }
 
 }
