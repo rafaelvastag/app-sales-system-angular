@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ClientesService } from '../../clientes.service';
 
 import { Cliente } from '../cliente'
 @Component({
@@ -9,12 +10,12 @@ import { Cliente } from '../cliente'
 export class ClientesFormComponent implements OnInit {
 
   dataBinding: string;
-
   propertyBind: string;
-
   cliente: Cliente;
+  success: boolean = false;
+  errors : string[];
 
-  constructor() {
+  constructor( private service : ClientesService) {
     this.dataBinding = 'dataBinding';
     this.propertyBind = 'propertyBind';
     this.cliente = new Cliente();
@@ -24,7 +25,16 @@ export class ClientesFormComponent implements OnInit {
   }
 
   onSubmit(): void {
-
+   this.service
+    .salvar(this.cliente)
+    .subscribe(response => {
+       this.success = true;
+       this.errors = null;
+       this.cliente = response;
+   } , errorResponse => {
+    this.success=false;
+    this.errors = errorResponse.error.errors;
+   });
   }
 
 }

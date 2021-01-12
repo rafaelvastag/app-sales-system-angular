@@ -4,6 +4,18 @@
 </ol>
 <div class="container">
   <form #clienteForm="ngForm" (ngSubmit)="onSubmit()">
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="alert alert-success" role="alert" *ngIf="success">
+          Cliente salvo com sucesso!
+        </div>
+        <div class="alert alert-danger" role="alert" *ngFor = "let erro of errors">
+          {{ erro }}
+        </div>
+      </div>
+    </div>
+
     <!-- Interpolação (Fluxo unirecional de dados do componente para o HTML)-->
     {{dataBinding}}, Operações Algebricas, {{ 1 + 2 - 3 * 9}}
     <br>
@@ -12,20 +24,19 @@
     EventBinding -> (click) = "click()" - Evento unidirecional da HTML -> COMPONENTES
     <br>
     Two-way-data-binding = Bidirecional [(ngModel)] = "value"
-    <div class="row">
+    <div class="row" *ngIf="success">
 
       <div class="col-md-6">
         <div class="form-group">
           <label>ID:</label>
-          <input type="text" class="form-control" [ngModel]="cliente.dataCadastro" name="dataCadastro"
-            disabled="true" />
+          <input type="text" class="form-control" [ngModel]="cliente.id" name="id" disabled="true" />
         </div>
       </div>
 
       <div class="col-md-6">
         <div class="form-group">
           <label>Data Cadastro:</label>
-          <input type="text" class="form-control" [ngModel]="cliente.id" name="id"
+          <input type="text" class="form-control" [ngModel]="cliente.dataCadastro" name="dataCadastro"
             disabled="true" />
         </div>
       </div>
@@ -52,7 +63,7 @@
 
     <div class="row">
       <div class="col-md-2">
-        <button type="submit" class="btn btn-success" >
+        <button type="submit" class="btn btn-success">
           <i class="fa fa-save"></i> Salvar
         </button>
       </div>
