@@ -11,7 +11,8 @@ import { ClientesListaComponent } from './clientes-lista/clientes-lista.componen
   imports: [
     CommonModule,
     ClientesRoutingModule,
-    FormsModule],
+    FormsModule
+  ],
   exports: [
     ClientesFormComponent,
     ClientesListaComponent],
