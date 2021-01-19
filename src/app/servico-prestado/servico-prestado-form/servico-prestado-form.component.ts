@@ -14,18 +14,24 @@ export class ServicoPrestadoFormComponent implements OnInit {
 
   clientes: Cliente[] = [];
   servico: ServicoPrestado;
+  success: boolean = false;
+  errors: string[];
 
-  constructor( private clienteService: ClientesService, private service: ServicoPrestadoService, private router: Router) { }
+  constructor(private clienteService: ClientesService, private service: ServicoPrestadoService, private router: Router) { }
 
   ngOnInit(): void {
     this.clienteService.getClientes().subscribe(response => this.clientes = response);
     this.servico = new ServicoPrestado();
   }
 
-  onSubmit(){
-    this.service.salvar(this.servico).subscribe( response => {
-      console.log(response);
-      this.router.navigateByUrl('clientes-lista');
+  onSubmit() {
+    this.service.salvar(this.servico).subscribe(response => {
+      this.success = true;
+      this.errors = null;
+      this.servico = new ServicoPrestado();
+    }, errorResponse => {
+      this.success = false;
+      this.errors = errorResponse.error.errors;
     });
   }
 }
