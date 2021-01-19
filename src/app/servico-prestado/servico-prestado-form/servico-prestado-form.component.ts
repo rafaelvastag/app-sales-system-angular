@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Cliente } from '../../clientes/cliente';
 import { ClientesService } from '../../clientes.service'
-import { servicoPrestado } from '../servicoPrestado';
+import { ServicoPrestado } from '../servicoPrestado';
+import { ServicoPrestadoService } from '../../servico-prestado.service'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-servico-prestado-form',
@@ -11,16 +13,19 @@ import { servicoPrestado } from '../servicoPrestado';
 export class ServicoPrestadoFormComponent implements OnInit {
 
   clientes: Cliente[] = [];
-  servico: servicoPrestado;
+  servico: ServicoPrestado;
 
-  constructor( private clienteService: ClientesService) { }
+  constructor( private clienteService: ClientesService, private service: ServicoPrestadoService, private router: Router) { }
 
   ngOnInit(): void {
     this.clienteService.getClientes().subscribe(response => this.clientes = response);
-    this.servico = new servicoPrestado();
+    this.servico = new ServicoPrestado();
   }
 
   onSubmit(){
-    console.log(this.servico);
+    this.service.salvar(this.servico).subscribe( response => {
+      console.log(response);
+      this.router.navigateByUrl('clientes-lista');
+    });
   }
 }
